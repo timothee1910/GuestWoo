@@ -1,11 +1,11 @@
-<ul>
+<ul class="navbar-nav">
     @foreach($items as $menu_item)
-        <li>
-            <a href="{{ $menu_item->link() }}">
+        <li class="nav-item">
+            <a class="nav-link px-xl-4" href="{{ env('APP_URL').$menu_item->link() }}">
                 {{ $menu_item->title }}
                 @if ($menu_item->title === 'Cart')
                     @if (Cart::instance('default')->count() > 0)
-                    <span class="cart-count"><span>{{ Cart::instance('default')->count() }}</span></span>
+                        <span class="cart-count"><span>{{ Cart::instance('default')->count() }}</span></span>
                     @endif
                 @endif
             </a>

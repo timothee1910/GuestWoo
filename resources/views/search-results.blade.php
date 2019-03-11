@@ -9,7 +9,7 @@
 @section('content')
 
     @component('components.breadcrumbs')
-        <a href="/">Home</a>
+        <a href="{{env('APP_URL')}}">Accueil</a>
         <i class="fa fa-chevron-right breadcrumb-separator"></i>
         <span>Search</span>
     @endcomponent
@@ -33,23 +33,23 @@
     </div>
 
     <div class="search-results-container container">
-        <h1>Search Results</h1>
-        <p class="search-results-count">{{ $products->total() }} result(s) for '{{ request()->input('query') }}'</p>
+        <h1>Résulat de la recherche</h1>
+        <p class="search-results-count">{{ $products->total() }} résultat(s) pour '{{ request()->input('query') }}'</p>
 
         @if ($products->total() > 0)
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>Nom</th>
                     <th>Details</th>
                     <th>Description</th>
-                    <th>Price</th>
+                    <th>Prix</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($products as $product)
                     <tr>
-                        <th><a href="{{ route('shop.show', $product->slug) }}">{{ $product->name }}</a></th>
+                        <th><a href="{{ env('APP_URL').route('shop.show', $product->slug) }}">{{ $product->name }}</a></th>
                         <td>{{ $product->details }}</td>
                         <td>{{ str_limit($product->description, 80) }}</td>
                         <td>{{ $product->presentPrice() }}</td>

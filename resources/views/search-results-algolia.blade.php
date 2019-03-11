@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Search Results Algolia')
+@section('title', 'Recherche')
 
 @section('extra-css')
     <link rel="stylesheet" href="{{ asset('css/algolia.css') }}">
@@ -11,9 +11,9 @@
 @section('content')
 
     @component('components.breadcrumbs')
-        <a href="/">Home</a>
+        <a href="{{env('APP_URL')}}">Accueil</a>
         <i class="fa fa-chevron-right breadcrumb-separator"></i>
-        <span>Search</span>
+        <span>Recherche</span>
     @endcomponent
 
     <div class="container">
@@ -37,7 +37,7 @@
     <div class="container">
         <div class="search-results-container-algolia">
             <div>
-                <h2>Search</h2>
+                <h2>Recherche un Produit</h2>
                 <div id="search-box">
                     <!-- SearchBox widget will appear here -->
                 </div>

@@ -15,7 +15,7 @@
                     const markup = `
                         <div class="algolia-result">
                             <span>
-                                <img src="${window.location.origin}/storage/${suggestion.image}" alt="img" class="algolia-thumb">
+                                <img src="${window.location.origin}/s1/laravel-ecommerce-example/public/storage/${suggestion.image}" alt="img" class="algolia-thumb">
                                 ${suggestion._highlightResult.name.value}
                             </span>
                             <span>$${(suggestion.price / 100).toFixed(2)}</span>
@@ -32,11 +32,11 @@
                 }
             }
         }).on('autocomplete:selected', function (event, suggestion, dataset) {
-            window.location.href = window.location.origin + '/shop/' + suggestion.slug;
+            window.location.href = window.location.origin + '/s1/laravel-ecommerce-example/public/shop/' + suggestion.slug;
             enterPressed = true;
         }).on('keyup', function(event) {
             if (event.keyCode == 13 && !enterPressed) {
-                window.location.href = window.location.origin + '/search-algolia?q=' + document.getElementById('aa-search-input').value;
+                window.location.href = window.location.origin + '/s1/laravel-ecommerce-example/public/search-algolia?q=' + document.getElementById('aa-search-input').value;
             }
         });
 })();
