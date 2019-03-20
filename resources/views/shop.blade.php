@@ -54,9 +54,9 @@
                     </div>
                 </header>
                 <div class="row">
-                    <div class="col-xl-4 col-sm-12">
-                        @forelse ($products as $product)
-                            <div class="product text-center">
+                    @foreach ($products as $product)
+                        <div class="col-xl-4 col-sm-6">
+                            <div class="product">
                                 <div class="product-image">
                                     <a href="{{ route('shop.show', $product->slug) }}">
                                         <img class="img-fluid"
@@ -74,29 +74,17 @@
                                                 class="text-dark">{{ $product->name }}</a></h3>
                                     <span class="text-muted">{{ $product->presentPrice() }}</span>
                                 </div>
-                                @empty
-                                    <div style="text-align: left"><p>No items found</p></div>
                             </div>
-                        @endforelse
-                    </div>
-                    <nav aria-label="page navigation" class="d-flex justify-content-center mb-5 mt-3">
-                        <ul class="pagination">
-                            <li class="page-item"><a href="#" aria-label="Previous" class="page-link"><span
-                                            aria-hidden="true">Prev</span><span class="sr-only">Previous</span></a>
-                            </li>
-                            <li class="page-item active"><a href="#" class="page-link">1 </a></li>
-                            <li class="page-item"><a href="#" class="page-link">2 </a></li>
-                            <li class="page-item"><a href="#" class="page-link">3 </a></li>
-                            <li class="page-item"><a href="#" class="page-link">4 </a></li>
-                            <li class="page-item"><a href="#" class="page-link">5 </a></li>
-                            <li class="page-item"><a href="#" aria-label="Next" class="page-link"><span
-                                            aria-hidden="true">Next</span><span
-                                            class="sr-only">Next     </span></a></li>
-                        </ul>
-                    </nav>
+                        </div>
+                    @endforeach
                 </div>
+                <nav aria-label="page navigation" class="d-flex justify-content-center mb-5 mt-3">
+                    <div>
+                        <div class="spacer"></div>
+                        {{ $products->appends(request()->input())->links() }}
+                    </div>
+                </nav>
             </div>
-            <!-- Sidebar---->
             <div class="sidebar col-xl-3 col-lg-4 order-lg-1">
                 <div class="sidebar-block px-3 px-lg-0 mr-lg-4">
                     <a data-toggle="collapse" href="#categoriesMenu" aria-expanded="false"
@@ -117,15 +105,19 @@
                         @endforeach
                     </div>
                 </div>
-                <div>
-                    <div class="spacer"></div>
-                    {{ $products->appends(request()->input())->links() }}
-                </div>
             </div>
-        </div>@endsection
-    @section('extra-js')
-        <!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
-            <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
-            <script src="{{ asset('js/algolia.js') }}"></script>
+        </div>
+    </div>
+
+@endsection
+@section('extra-js')
+    <!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
+    <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
+    <script src="{{ asset('js/algolia.js') }}"></script>
+    <script>
+        var basePath = ""
+
+    </script>
+    <script src="{{asset('js/theme.js')}}"></script>
 @endsection
